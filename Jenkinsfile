@@ -55,7 +55,7 @@ pipeline {
 
           post{
                 success{
-                     slackSend( channel: "#fundamentos-de-devops", color: "#FFF", message: "Funcionando perfecto")
+                     slackSend( channel: "#fundamentos-de-devops", color: "#69f9ec", message: "Funcionando perfecto")
                     }
                  failure{
                      slackSend( channel: "#fundamentos-de-devops", color: "#ff0000", message: "Incendio! ${env.BUILD_ID}")
