@@ -19,7 +19,9 @@ pipeline {
             
             }
         } 
-        stage("Publish to Nexus Repository Manager") {
+
+        
+       /*  stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
@@ -48,12 +50,14 @@ pipeline {
                         error "*** File: ${artifactPath}, could not be found";
                     }
 
-            }
+                }
         
             } 
 
 
-          post{
+       
+} */
+   post{
                 success{
                      slackSend( channel: "#fundamentos-de-devops", color: "#69f9ec", message: "Funcionando perfecto")
                     }
@@ -62,5 +66,4 @@ pipeline {
                   }
               }
             }
-}
 }
