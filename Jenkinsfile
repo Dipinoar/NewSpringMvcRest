@@ -48,11 +48,15 @@ pipeline {
                         error "*** File: ${artifactPath}, could not be found";
                     }
 
-                    post {
-                         success {
-                            slackSend "Build deployed successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-                        }
-                    }
+                 post {
+        always {
+            script {
+                BUILD_USER = getBuildUser()
+            }
+            echo 'I will always say hello in the console.'            slackSend channel: '#fundamentos-de-devops',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL}"
+        }
                 }
             }
         
