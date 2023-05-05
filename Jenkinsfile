@@ -53,15 +53,12 @@ pipeline {
             } 
 
 
-                 post {
-        always {
-            script {
-                BUILD_USER = getBuildUser()
+          post{
+                success{
+                     slackSend( channel: "#fundamentos-de-devops", color: "#FFF", message: "Funcionando perfecto")
+                    }
+                 failure{
+                     slackSend( channel: "#fundamentos-de-devops", color: "#ff0000", message: "Incendio! ${env.BUILD_ID}")
+                  }
+              }
             }
-            echo 'I will always say hello in the console.'            slackSend channel: '#fundamentos-de-devops',
-                color: COLOR_MAP[currentBuild.currentResult],
-                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL}"
-        }
-                }
-     }
-}
