@@ -55,8 +55,9 @@ pipeline {
             } 
 
 
-       
+        
 } */
+  }
    post{
                 success{
                      slackSend( channel: "#fundamentos-de-devops", color: "#69f9ec", message: "Funcionando perfecto")
@@ -65,5 +66,7 @@ pipeline {
                      slackSend( channel: "#fundamentos-de-devops", color: "#ff0000", message: "Incendio! ${env.BUILD_ID}")
                   }
               }
-            }
+              
+
+          
 }
