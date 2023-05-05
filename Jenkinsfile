@@ -47,6 +47,12 @@ pipeline {
                     } else {
                         error "*** File: ${artifactPath}, could not be found";
                     }
+
+                    post {
+                         success {
+                            slackSend "Build deployed successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+                        }
+                    }
                 }
             }
         
