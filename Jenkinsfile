@@ -1,6 +1,5 @@
+pipeline {
 
-
-        pipeline {
     agent any
         stages {
         stage('Initialize'){
@@ -22,7 +21,7 @@
             }
         } 
 
-  stage('Publish to Nexus Repository Manager') {
+        stage('Publish to Nexus Repository Manager') {
             steps {
                 script {
                     pom = readMavenPom file: 'pom.xml'
@@ -54,14 +53,14 @@
             }
         }
   }
-   post{
+/*    post{
                 success{
                      slackSend( channel: "#fundamentos-de-devops", color: "#69f9ec", message: "Funcionando en Nexus")
                     }
                  failure{
                      slackSend( channel: "#fundamentos-de-devops", color: "#ff0000", message: "Incendio! ${env.BUILD_ID}")
                   }
-              }
+              } */
               
 }
           
