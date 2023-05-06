@@ -21,7 +21,7 @@ pipeline {
         } 
 
         
-       /*  stage("Publish to Nexus Repository Manager") {
+ stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
@@ -34,11 +34,11 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: "nexus3",
                             protocol: "http",
-                            nexusUrl: "localhost:8081",
+                            nexusUrl: "10.0.2.15:8081",
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: "EjemploRepo",
-                            credentialsId: "NexusCredentials",
+                            repository: "mod03tarea06",
+                            credentialsId: "admin",
                             artifacts: [
                                 [artifactId: pom.artifactId,
                                         classifier: '',
@@ -56,11 +56,11 @@ pipeline {
 
 
         
-} */
+} 
   }
    post{
                 success{
-                     slackSend( channel: "#fundamentos-de-devops", color: "#69f9ec", message: "Funcionando perfecto")
+                     slackSend( channel: "#fundamentos-de-devops", color: "#69f9ec", message: "Funcionando en Nexus")
                     }
                  failure{
                      slackSend( channel: "#fundamentos-de-devops", color: "#ff0000", message: "Incendio! ${env.BUILD_ID}")
