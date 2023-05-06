@@ -37,7 +37,7 @@ pipeline {
                             nexusUrl: "10.0.2.15:8081",
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: "mod03tarea06",
+                            repository: "maven-releases",
                             credentialsId: "admin",
                             artifacts: [
                                 [artifactId: pom.artifactId,
