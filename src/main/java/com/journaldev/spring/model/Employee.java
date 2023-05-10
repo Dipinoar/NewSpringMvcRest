@@ -33,6 +33,7 @@ public class Employee implements Serializable{
 	}
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+		system.printf.out("Hola Mundo");
 	}
 	
 	
