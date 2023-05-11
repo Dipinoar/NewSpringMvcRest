@@ -1,42 +1,56 @@
 pipeline {
-agent any
+    agent any
+        stages {
+        stage('Initialize'){
+            steps{
+                echo "Esta es el inicio"
+            }
+        }
+        stage('Build') {
+            steps {
+                echo "Este es el build"
+            
+            }
+        }
+            
+        stage('Test') {
+            steps {
+                 echo "Este es el Test"
 
-stages {
-stage('Clean') {
-steps {
-sh 'mvn clean'
-script {
-if (currentBuild.result == 'SUCCESS') {
-env.BUILD_STAGE1_STATUS = 'SUCCESS'
-} else {
-env.BUILD_STAGE1_STATUS = 'FAILURE'
-}
-}
-}
-}
+            }
+        } 
+     /*   stage("Publish to Nexus Repository Manager") {
+            steps {
+                script {
+                    pom = readMavenPom file: "pom.xml";
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+                    artifactPath = filesByGlob[0].path;
+                    artifactExists = fileExists artifactPath;
+                    if(artifactExists) {
+                        echo "* File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                        nexusArtifactUploader(
+                            nexusVersion: "nexus3",
+                            protocol: "http",
+                            nexusUrl: "localhost:8081",
+                            groupId: pom.groupId,
+                            version: pom.version,
+                            repository: "Repositorio1",
+                            credentialsId: "NexusCredentials",
+                            artifacts: [
+                                [artifactId: pom.artifactId,
+                                        classifier: '',
+                                        file: artifactPath,
+                                        type: pom.packaging]
+                            ]
+                        );
+                    } else {
+                        error "* File: ${artifactPath}, could not be found";
+                    }
+                }
+            }
 
-stage('Install') {
-steps {
-sh 'mvn install'
-script {
-if (currentBuild.result == 'SUCCESS') {
-env.BUILD_STAGE2_STATUS = 'SUCCESS'
-} else {
-env.BUILD_STAGE2_STATUS = 'FAILURE'
-}
-}
-}
-}
-}
-
-post {
-always {
-script {
-def summary = "Pipeline summary:\n"
-summary += "Build stage: ${env.BUILD_STAGE1_STATUS}\n"
-summary += "Test stage: ${env.BUILD_STAGE2_STATUS}\n"
-slackSend channel: '#fundamentos-de-devops', message: summary, tokenCredentialId: 'SecretSlack'
-}
-}
-}
-}
+            } 
+     }   */
+          
+} 
