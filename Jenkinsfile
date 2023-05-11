@@ -44,10 +44,10 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: "nexus3",
                             protocol: "http",
-                            nexusUrl: "https://0cc1-181-160-173-27.sa.ngrok.io:8081",
+                            nexusUrl: "https://0cc1-181-160-173-27.sa.ngrok.io",
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: "Modulo3-hosted",
+                            repository: "Modulo3-hosted/",
                             credentialsId: "MavenNexus",
                             artifacts: [
                                 [artifactId: pom.artifactId,
