@@ -19,6 +19,24 @@ pipeline {
 
             }
         } 
+        stage('SonarQube Analysis') {
+            environment {
+                SCANNER_HOME = tool 'SonarQube Conexion'
+            }
+            steps {
+                withSonarQubeEnv(credentialsId: 'SonarGrupo3', installationName: 'SonarQube123') {
+                    sh '''$SCANNER_HOME/bin/sonar-scanner \ 
+                    -Dsonar.projectKey=modulo3 \
+                    -Dsonar.projectName=modulo3 \
+                    -Dsonar.sources=./ \
+                    -Dsonar.java.binaries=target/classes/ \
+                    -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
+                }
+            }
+        }    
+            
+            
+            
      /*   stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
@@ -51,7 +69,6 @@ pipeline {
             }
 
             } 
-     }   */
-          
-} 
+     }   */   
+  } 
 }
