@@ -26,8 +26,8 @@ pipeline {
                     -Dsonar.projectKey=modulo3 \\
                     -Dsonar.projectName=modulo3 \\
                     -Dsonar.sources=./ \\
-                    -Dsonar.java.binaries=target/classes/ \\
-                    //-Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}"""
+                    -Dsonar.java.binaries=target/classes/ """
+                    
                 }
             }
         }
