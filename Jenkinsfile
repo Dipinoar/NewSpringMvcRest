@@ -31,7 +31,7 @@ pipeline {
                 }
             }
         }
-        /*stage("Publish to Nexus Repository Manager") {
+        stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml"
@@ -44,11 +44,11 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: "nexus3",
                             protocol: "http",
-                            nexusUrl: "localhost:8081",
+                            nexusUrl: " https://0cc1-181-160-173-27.sa.ngrok.io:8081",
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: "Repositorio1",
-                            credentialsId: "NexusCredentials",
+                            repository: "Modulo3-hosted",
+                            credentialsId: "MavenNexus",
                             artifacts: [
                                 [artifactId: pom.artifactId,
                                     classifier: '',
@@ -61,7 +61,7 @@ pipeline {
                     }
                 }
             }
-        }*/
+        }
     }
 }
 
