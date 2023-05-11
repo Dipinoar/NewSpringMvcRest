@@ -25,12 +25,12 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv(credentialsId: 'SonarGrupo3', installationName: 'SonarQube123') {
-                    sh '''$SCANNER_HOME/bin/sonar-scanner \ 
+                    sh """$SCANNER_HOME/bin/sonar-scanner \ 
                     -Dsonar.projectKey=modulo3 \
                     -Dsonar.projectName=modulo3 \
                     -Dsonar.sources=./ \
                     -Dsonar.java.binaries=target/classes/ \
-                    -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
+                    -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}"""
                 }
             }
         }    
