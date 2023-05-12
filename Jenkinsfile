@@ -47,8 +47,8 @@ pipeline {
                             nexusUrl: '192.168.100.13:8081',
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: 'grupo3',
-                            credentialsId: 'admin',
+                            repository: 'grupo3-hosted',
+                            credentialsId: 'nexus',
                             artifacts: [
                                 [artifactId: pom.artifactId,
                                     classifier: '',
