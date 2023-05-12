@@ -8,7 +8,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo "Este es el build"
+               // echo "Este es el build"
+                sh "mvn clean package"
             }
         }
         stage('Test') {
@@ -45,7 +46,7 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
-                            nexusUrl: '192.168.100.13:8081',
+                            nexusUrl: 'localhost:8081',
                             groupId: pom.groupId,
                             version: pom.version,
                             repository: 'grupo3-hosted',
