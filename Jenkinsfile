@@ -40,14 +40,14 @@ pipeline {
                     artifactPath = filesByGlob[0].path
                     artifactExists = fileExists artifactPath
                     if (artifactExists) {
-                        echo "* File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}"
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}"
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
                             nexusUrl: '192.168.100.13:8081',
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: 'grupo3-hosted/',
+                            repository: 'grupo3-hosted',
                             credentialsId: 'nexus',
                             artifacts: [
                                 [artifactId: pom.artifactId,
