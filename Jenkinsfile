@@ -31,7 +31,7 @@ pipeline {
                 }
             }
         }
-        stage("Publish to Nexus Repository Manager") {
+        stage('Publish to Nexus Repository Manager') {
             steps {
                 script {
                     pom = readMavenPom file: 'pom.xml'
@@ -47,8 +47,8 @@ pipeline {
                             nexusUrl: '192.168.100.13:8081',
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: 'grupo3-hosted',
-                            credentialsId: 'nexus',
+                            repository: 'grupo3',
+                            credentialsId: 'admin',
                             artifacts: [
                                 [artifactId: pom.artifactId,
                                     classifier: '',
