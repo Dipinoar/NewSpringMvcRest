@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml"
-                    filesByGlob = findFiles(glob: "./*.${pom.packaging}")
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
                     echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
                     artifactPath = filesByGlob[0].path
                     artifactExists = fileExists artifactPath
@@ -44,11 +44,11 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: "nexus3",
                             protocol: "http",
-                            nexusUrl: "https://0cc1-181-160-173-27.sa.ngrok.io",
+                            nexusUrl: "http://192.168.100.13:8081",
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: "Modulo3-hosted/",
-                            credentialsId: "MavenNexus",
+                            repository: "grupo3-hosted/",
+                            credentialsId: "nexus",
                             artifacts: [
                                 [artifactId: pom.artifactId,
                                     classifier: '',
