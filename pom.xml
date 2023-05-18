@@ -121,6 +121,12 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+<!-- evaluacion -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+<!-- fin evaluacion -->
 	</dependencies>
 	<build>
 		<plugins>
